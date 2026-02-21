@@ -112,6 +112,7 @@ with pt as
 select *
 ,row_number() over (partition by patient_id order by discontinuation_date desc)  rk
 from `hh_eu_uat_adp_global`.`market_access`.vw_fpp__fct_patient_details
+WHERE country_code = 'VN'
 )
 select * from pt where rk=1;
 
@@ -171,6 +172,7 @@ AS (
    ,'Re-assigned'
    )
   AND fpcao.clinical_cycle_number > 0
+  AND country_code = 'VN'
  )
 SELECT infusion.patient_id
  ,infusion.program_id
